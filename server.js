@@ -6,10 +6,12 @@ var express = require('express');
 var app = express();
 var sassMiddleware = require("node-sass-middleware");
 const port = 3000;
+const path = require('path');
 
 app.use(sassMiddleware({
-  src: __dirname + '/public',
-  dest: '/tmp'
+  src: path.join(__dirname, '/public/style'),
+  dest: '/tmp',
+  outputStyle: 'compressed'
 }));
 
 // http://expressjs.com/en/starter/static-files.html

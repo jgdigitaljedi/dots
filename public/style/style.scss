@@ -1,0 +1,15 @@
+// @import './_other/shadows.scss';
+// @import './_other/theme.scss';
+body {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  .game-controls {
+    align-items: center;
+    display: flex;
+    height: auto;
+    justify-content: space-around;
+    min-height: 6rem;
+  }
+}
