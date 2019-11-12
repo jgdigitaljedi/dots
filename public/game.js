@@ -6,10 +6,9 @@ class GameControl {
     this.ctxWidth = canvas.width || 0;
     this.ctxHeight = canvas.height || 0;
 
-    // control and score elements
+    // control elements
     this.toggle = toggle;
     this.slider = speedSlider;
-    this.scoreboard = scoreboard;
 
     // state
     this.paused = true;
@@ -18,12 +17,12 @@ class GameControl {
     this.frameTime = new Date();
     this.pauseTime = null;
     this.rate = 30;
-    this.score = 0;
     this.delta = null;
     this.colorIndex = 0;
 
     // constants
     this.colorArr = ['#984b43', '#233237', '#eac67a', '#50555c'];
+    this.scoreControl = new ScoreControl(scoreboard);
 
     // methods that need bind because called by window function
     this.drawCanvas = this.drawCanvas.bind(this);
@@ -111,8 +110,7 @@ class GameControl {
         Math.sqrt(Math.pow(event.clientX - dot.x, 2) + Math.pow(adjustedY - dot.y, 2)) <
         dot.radius + 10;
       if (collision) {
-        this.score += Math.round(dot.value + this.rate / 10);
-        this.scoreboard.innerText = this.score;
+        this.scoreControl.update(dot.value, this.rate);
         this.dots.splice(i, 1);
       }
     });
