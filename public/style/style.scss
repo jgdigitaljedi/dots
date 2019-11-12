@@ -113,11 +113,10 @@ body {
           outline: none;
         }
         &::-webkit-slider-runnable-track {
-          // animate: 0.2s;
           background: $accent;
           border: 0px solid #000000;
           border-radius: 14px;
-          box-shadow: 1px 1px 1px #50555c;
+          box-shadow: 1px 1px 1px $gray;
           cursor: pointer;
           height: 14px;
           width: 100%;
@@ -139,11 +138,10 @@ body {
           background: $accent;
         }
         &::-moz-range-track {
-          // animate: 0.2s;
           background: $accent;
           border-radius: 14px;
           border: 0px solid #000000;
-          box-shadow: 1px 1px 1px #50555c;
+          box-shadow: 1px 1px 1px $gray;
           cursor: pointer;
           height: 14px;
           width: 100%;
@@ -160,7 +158,6 @@ body {
           @include box-shadow(2);
         }
         &::-ms-track {
-          // animate: 0.2s;
           background: transparent;
           border-color: transparent;
           color: transparent;
@@ -173,13 +170,13 @@ body {
           background: $accent;
           border: 0px solid #000000;
           border-radius: 28px;
-          box-shadow: 1px 1px 1px #50555c;
+          box-shadow: 1px 1px 1px $gray;
         }
         &::-ms-fill-upper {
           background: $accent;
           border: 0px solid #000000;
           border-radius: 28px;
-          box-shadow: 1px 1px 1px #50555c;
+          box-shadow: 1px 1px 1px $gray;
         }
         &::-ms-thumb {
           background: $accent2;

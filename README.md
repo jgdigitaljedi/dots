@@ -2,7 +2,7 @@
 
 ## Overview
 
-I was asked to do this a s challenge. I got the bulk of the logic done on the first day and further expanded the functionality while cleaning things up a little on the second day. Canvas and classes were the obvious picks here. I would have chosen to do TypeScript classes, but the rules said not to use any libraries. For this GitHub repo, I did use some npm dependencies only for a development process. The actuall game does not use any libs.
+I was asked to do this a s challenge. I got the bulk of the logic done on the first day and further expanded the functionality while cleaning things up a little on the second day. Canvas and classes were the obvious picks here. I would have chosen to do TypeScript classes, but the rules said not to use any libraries so I figured that meant this was a test to see my raw JavaScript knowledge. For this GitHub repo, I did use some npm dependencies only for a development process. The actual game does not use any libs.
 
 For more canvas games by me (this is something I've tinkered with in the past), check out my OLD repo [https://github.com/jgdigitaljedi/simpleGames](https://github.com/jgdigitaljedi/simpleGames). It's not all complete, but pong and breakout work and the breakout project shows the various stages of feature adds I went through which, at the time I thought was cool, but is kind of silly in retrospect. The breakout game also needs to have the small margins removed from the bricks as I figured it this causes occasional weird collision detection behavior.
 
@@ -28,4 +28,10 @@ I didn't spend much time on the dev process as it was somewhat pointless. I just
 npm start
 ```
 
-I have this set up where the faster the speed the greater the point value AND the smaller the the dot the greater the point value. In other words, small dots on fast speeds are worth quite a bit!
+## The Game
+
+- use the start button to start and pause the game
+- click the dots to get points
+  - the faster the speed, the higher the points
+  - the smaller the dot, the higher the points
+- dots are color coded by their size which also means by their point value
