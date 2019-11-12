@@ -5,28 +5,28 @@ class GameControl {
     this.ctx = canvas.getContext('2d'); // canvas context
 
     /** control elements */
-    this.toggle = toggle; // start/pause button
     this.slider = speedSlider; // speed slider
     this.sliderValue = sliderValue; // element containing slider value on DOM
+    this.toggle = toggle; // start/pause button
 
     /** state */
-    this.paused = true; // paused state
+    this.delta = null; // manipulation of time variables to advance the animations
     this.dots = []; // array of dots being displayed
     this.dropInterval = null; // interval for game assigned to variable so it can be cancelled as well
     this.frameTime = new Date(); // last time stamp for a frame
+    this.paused = true; // paused state
     this.pauseTime = null; // used when pausing to keep track of time between pause and timestamp
     this.rate = 10; // drop speed
-    this.delta = null; // manipulation of time variables to advance the animations
 
     /** constants */
     this.colorArr = ['#984b43', '#eac67a', '#50555c', '#233237']; // colors for dots
-    this.scoreControl = new ScoreControl(scoreboard); // instance of score class
     this.controls = new StartButton(toggle, speedSlider); // instance of controls class
+    this.scoreControl = new ScoreControl(scoreboard); // instance of score class
 
     /** methods that need bind because called by window outside of closure */
+    this.collisionTest = this.collisionTest.bind(this);
     this.drawCanvas = this.drawCanvas.bind(this);
     this.makeDot = this.makeDot.bind(this);
-    this.collisionTest = this.collisionTest.bind(this);
 
     /** start listeners to start game */
     this.handleClick();

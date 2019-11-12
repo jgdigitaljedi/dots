@@ -1,11 +1,11 @@
 class Dot {
   constructor(ctx, coords, radius, color) {
-    this.radius = radius || 10; // min of 10
+    this.color = color;
     this.ctx = ctx;
+    this.radius = radius || 10; // min of 10
+    this.value = 10 - this.radius / 10;
     this.x = coords.x || 0; // slight error proofing
     this.y = coords.y || 0; // slight error proofing
-    this.color = color;
-    this.value = 10 - this.radius / 10;
   }
 
   render(rate) {

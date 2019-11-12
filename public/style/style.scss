@@ -26,7 +26,7 @@ body {
     justify-content: space-around;
     min-height: 3rem;
     width: 100%;
-    @include box_shadow(2);
+    @include box_shadow(3);
     @media only screen and (max-width: 550px) {
       flex-direction: column;
       height: 12rem;
@@ -74,11 +74,15 @@ body {
         color: $primary;
         font-size: 3rem;
         height: 4rem;
+        transition: box-shadow 0.5s ease-out;
         width: 12rem;
         @include box-shadow(2);
         @media only screen and (max-width: 550px) {
           font-size: 2rem;
           height: 3rem;
+        }
+        &:active {
+          box-shadow: none;
         }
         &.pause-game {
           background-color: $accent;
@@ -132,7 +136,7 @@ body {
           cursor: pointer;
           margin-top: -3px;
           width: 40px;
-          @include box-shadow(2);
+          @include box-shadow(3);
         }
         &:focus::-webkit-slider-runnable-track {
           background: $accent;
@@ -155,7 +159,7 @@ body {
           cursor: pointer;
           height: 20px;
           width: 40px;
-          @include box-shadow(2);
+          @include box-shadow(3);
         }
         &::-ms-track {
           background: transparent;
@@ -187,7 +191,7 @@ body {
           height: 20px;
           margin-top: 1px;
           width: 40px;
-          @include box-shadow(2);
+          @include box-shadow(3);
         }
         &:focus::-ms-fill-lower {
           background: $accent;

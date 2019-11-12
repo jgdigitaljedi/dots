@@ -22,7 +22,7 @@ body {
     justify-content: space-around;
     min-height: 3rem;
     width: 100%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
     @media only screen and (max-width: 550px) {
       body .game-controls {
         flex-direction: column;
@@ -67,12 +67,15 @@ body {
         color: #18121e;
         font-size: 3rem;
         height: 4rem;
+        transition: box-shadow 0.5s ease-out;
         width: 12rem;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
         @media only screen and (max-width: 550px) {
           body .game-controls .game-controls__power-button .game-controls__power-button--button {
             font-size: 2rem;
             height: 3rem; } }
+        body .game-controls .game-controls__power-button .game-controls__power-button--button:active {
+          box-shadow: none; }
         body .game-controls .game-controls__power-button .game-controls__power-button--button.pause-game {
           background-color: #984b43;
           border: 4px solid #eac67a;
@@ -117,7 +120,7 @@ body {
           cursor: pointer;
           margin-top: -3px;
           width: 40px;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
         body .game-controls .game-controls__speed .game-controls__speed--input:focus::-webkit-slider-runnable-track {
           background: #984b43; }
         body .game-controls .game-controls__speed .game-controls__speed--input::-moz-range-track {
@@ -137,7 +140,7 @@ body {
           cursor: pointer;
           height: 20px;
           width: 40px;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
         body .game-controls .game-controls__speed .game-controls__speed--input::-ms-track {
           background: transparent;
           border-color: transparent;
@@ -165,7 +168,7 @@ body {
           height: 20px;
           margin-top: 1px;
           width: 40px;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
         body .game-controls .game-controls__speed .game-controls__speed--input:focus::-ms-fill-lower {
           background: #984b43; }
         body .game-controls .game-controls__speed .game-controls__speed--input:focus::-ms-fill-upper {
