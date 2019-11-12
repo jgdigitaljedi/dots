@@ -35,3 +35,7 @@ npm start
   - the faster the speed, the higher the points
   - the smaller the dot, the higher the points
 - dots are color coded by their size which also means by their point value
+
+While far from perfection, I tried to rpesent something that is responsive, has a decent theme/color palette, and meets the requirements and I wanted it to be done as quickly as possible because Ive got a busy week ahead of me!
+
+I thought about adding another slider to change the delay between dot creation. The idea was to allow the player to make them not only drop more quickly but in fast succession and I would have made that increased the score even more. The logic would have been quite simple. The html and styling would have been a slight pain wwith the responsiveness.

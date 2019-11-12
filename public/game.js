@@ -175,12 +175,11 @@ class GameControl {
   makeDot() {
     const radius = (this.rando(1, 10) * 10) / 2; // take a rand between 1 and 10, multiply by ten to make it 10 - 100, then divide in half to get radius
     const coordinates = {
-      x: this.rando(radius + 2, this.canvas.width - radius - 2),
+      x: this.rando(radius + 2, this.canvas.width - radius - 2), // this is a bit dodgy; The idea is to generate min x 2 larger than radius and max x 2 less that radius for padding
       y: 0 - radius
     };
     const next = this.colorIndex + 1;
     this.colorIndex = next < this.colorArr.length ? next : 0;
-    // const dot = new Dot(this.ctx, coordinates, radius, this.colorArr[this.colorIndex]);
     const dot = new Dot(this.ctx, coordinates, radius, this.dotColor(radius));
     this.dots.push(dot);
   }
