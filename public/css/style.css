@@ -1,0 +1,111 @@
+html,
+body {
+  background-color: #18121e;
+  height: 100%; }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  body .game-controls {
+    align-items: center;
+    background-color: #233237;
+    color: #fafafa;
+    display: flex;
+    height: 10%;
+    justify-content: space-around;
+    min-height: 3rem;
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+    body .game-controls .game-controls__score {
+      color: #fafafa;
+      font-family: "VT323", monospace;
+      font-size: 3rem; }
+    body .game-controls .game-controls__power-button {
+      background-color: #eac67a;
+      border: 4px solid #984b43;
+      color: #18121e;
+      font-size: 3rem;
+      height: 4rem;
+      width: 12rem; }
+      body .game-controls .game-controls__power-button.pause-game {
+        background-color: #984b43;
+        border: 4px solid #eac67a;
+        color: #fafafa; }
+    body .game-controls .game-controls__speed {
+      background-color: #233237;
+      height: 26px;
+      -webkit-appearance: none;
+      margin: 10px 0;
+      width: 20%; }
+      body .game-controls .game-controls__speed:focus {
+        outline: none; }
+      body .game-controls .game-controls__speed::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #50555c;
+        background: #984b43;
+        border-radius: 14px;
+        border: 0px solid #000000; }
+      body .game-controls .game-controls__speed::-webkit-slider-thumb {
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: #eac67a;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -3px; }
+      body .game-controls .game-controls__speed:focus::-webkit-slider-runnable-track {
+        background: #984b43; }
+      body .game-controls .game-controls__speed::-moz-range-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #50555c;
+        background: #984b43;
+        border-radius: 14px;
+        border: 0px solid #000000; }
+      body .game-controls .game-controls__speed::-moz-range-thumb {
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: #eac67a;
+        cursor: pointer; }
+      body .game-controls .game-controls__speed::-ms-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent; }
+      body .game-controls .game-controls__speed::-ms-fill-lower {
+        background: #984b43;
+        border: 0px solid #000000;
+        border-radius: 28px;
+        box-shadow: 1px 1px 1px #50555c; }
+      body .game-controls .game-controls__speed::-ms-fill-upper {
+        background: #984b43;
+        border: 0px solid #000000;
+        border-radius: 28px;
+        box-shadow: 1px 1px 1px #50555c; }
+      body .game-controls .game-controls__speed::-ms-thumb {
+        margin-top: 1px;
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: #eac67a;
+        cursor: pointer; }
+      body .game-controls .game-controls__speed:focus::-ms-fill-lower {
+        background: #984b43; }
+      body .game-controls .game-controls__speed:focus::-ms-fill-upper {
+        background: #984b43; }
+  body .game-area {
+    height: 90%; }

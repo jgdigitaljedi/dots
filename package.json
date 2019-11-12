@@ -6,12 +6,15 @@
   "dependencies": {},
   "devDependencies": {
     "express": "^4.17.1",
+    "node-sass": "^4.13.0",
     "node-sass-middleware": "^0.11.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "prettier": "^1.19.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch public/**/* --watch views/* server.js",
+    "dev": "ENV=development npm run scss & nodemon server.js localhost 3000",
+    "scss": "node-sass --watch public/style -o public/css",
     "start": "node server.js"
   },
   "repository": {

@@ -1,15 +1,136 @@
-// @import './_other/shadows.scss';
-// @import './_other/theme.scss';
+@import 'shadows.scss';
+@import 'theme.scss';
+html,
 body {
-  display: flex;
+  background-color: $primary;
   height: 100%;
+}
+body {
+  font-family: $primary-font;
   margin: 0;
   padding: 0;
+  width: 100%;
   .game-controls {
     align-items: center;
+    background-color: $secondary;
+    color: $flat-white;
     display: flex;
-    height: auto;
+    height: 10%;
     justify-content: space-around;
-    min-height: 6rem;
+    min-height: 3rem;
+    width: 100%;
+    @include box_shadow(2);
+    .game-controls__score {
+      color: $flat-white;
+      font-family: $secondary-font;
+      font-size: 3rem;
+    }
+    .game-controls__power-button {
+      background-color: $accent2;
+      border: 4px solid $accent;
+      color: $primary;
+      font-size: 3rem;
+      height: 4rem;
+      width: 12rem;
+      &.pause-game {
+        background-color: $accent;
+        border: 4px solid $accent2;
+        color: $flat-white;
+      }
+    }
+    .game-controls__speed {
+      // I won't pretend like I'm a css wizard. I used this: https://www.cssportal.com/style-input-range/
+      background-color: $secondary;
+      height: 26px;
+      -webkit-appearance: none;
+      margin: 10px 0;
+      width: 20%;
+      &:focus {
+        outline: none;
+      }
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        // animate: 0.2s;
+        box-shadow: 1px 1px 1px #50555c;
+        background: $accent;
+        border-radius: 14px;
+        border: 0px solid #000000;
+      }
+      &::-webkit-slider-thumb {
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: $accent2;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -3px;
+      }
+      &:focus::-webkit-slider-runnable-track {
+        background: $accent;
+      }
+      &::-moz-range-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        // animate: 0.2s;
+        box-shadow: 1px 1px 1px #50555c;
+        background: $accent;
+        border-radius: 14px;
+        border: 0px solid #000000;
+      }
+      &::-moz-range-thumb {
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: $accent2;
+        cursor: pointer;
+      }
+      &::-ms-track {
+        width: 100%;
+        height: 14px;
+        cursor: pointer;
+        // animate: 0.2s;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+      &::-ms-fill-lower {
+        background: $accent;
+        border: 0px solid #000000;
+        border-radius: 28px;
+        box-shadow: 1px 1px 1px #50555c;
+      }
+      &::-ms-fill-upper {
+        background: $accent;
+        border: 0px solid #000000;
+        border-radius: 28px;
+        box-shadow: 1px 1px 1px #50555c;
+      }
+      &::-ms-thumb {
+        margin-top: 1px;
+        box-shadow: 0px 0px 0px #000000;
+        border: 0px solid #000000;
+        height: 20px;
+        width: 40px;
+        border-radius: 12px;
+        background: $accent2;
+        cursor: pointer;
+      }
+      &:focus::-ms-fill-lower {
+        background: $accent;
+      }
+      &:focus::-ms-fill-upper {
+        background: $accent;
+      }
+    }
+  }
+  .game-area {
+    height: 90%;
   }
 }
