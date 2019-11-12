@@ -2,7 +2,6 @@
   // select needed elements
   const gameArea = document.querySelector('.game-area');
   const gameCanvas = document.querySelector('#game-area__canvas');
-  const gameCtx = gameCanvas.getContext('2d');
   const toggleButton = document.querySelector('.game-controls__power-button--button');
   const speedSlider = document.querySelector('.game-controls__speed');
   const scoreboard = document.querySelector('.game-controls__score--display');
@@ -19,9 +18,9 @@
     gameInstance.windowResized(gameCanvas.width, gameCanvas.height);
   });
 
+  // create and instance of the GameControl class passing it the required element refs
   const gameInstance = new GameControl(
     gameCanvas,
-    gameCtx,
     toggleButton,
     speedSlider,
     scoreboard,

@@ -1,8 +1,8 @@
 class GameControl {
-  constructor(canvas, ctx, toggle, speedSlider, scoreboard, sliderValue) {
+  constructor(canvas, toggle, speedSlider, scoreboard, sliderValue) {
     /** canvas related */
     this.canvas = canvas; // canvas
-    this.ctx = ctx; // canvas context
+    this.ctx = canvas.getContext('2d'); // canvas context
 
     /** control elements */
     this.toggle = toggle; // start/pause button
@@ -15,12 +15,12 @@ class GameControl {
     this.dropInterval = null; // interval for game assigned to variable so it can be cancelled as well
     this.frameTime = new Date(); // last time stamp for a frame
     this.pauseTime = null; // used when pausing to keep track of time between pause and timestamp
-    this.rate = 30; // drop speed
+    this.rate = 10; // drop speed
     this.delta = null; // manipulation of time variables to advance the animations
     this.colorIndex = 0; // current index to be used in color array for dots
 
     /** constants */
-    this.colorArr = ['#984b43', '#233237', '#eac67a', '#50555c']; // colors for dots
+    this.colorArr = ['#984b43', '#eac67a', '#50555c', '#233237']; // colors for dots
     this.scoreControl = new ScoreControl(scoreboard); // instance of score class
     this.controls = new StartButton(toggle, speedSlider); // instance of controls class
 
@@ -60,7 +60,7 @@ class GameControl {
   handleSlider() {
     this.slider.addEventListener('change', event => {
       this.sliderValue.innerText = event.target.value;
-      this.rate = event.target.value * 50;
+      this.rate = event.target.value * 10;
     });
   }
 
@@ -95,6 +95,18 @@ class GameControl {
         this.dots.splice(i, 1);
       }
     });
+  }
+
+  dotColor(radius) {
+    if (radius < 13) {
+      return this.colorArr[0];
+    } else if (radius >= 13 && radius < 26) {
+      return this.colorArr[1];
+    } else if (radius >= 26 && radius < 37) {
+      return this.colorArr[2];
+    } else {
+      return this.colorArr[3];
+    }
   }
 
   /****** state management */
@@ -161,14 +173,15 @@ class GameControl {
 
   // instantiate new dot and add to array
   makeDot() {
-    const radius = (this.rando(1, 10) * 10) / 2;
+    const radius = (this.rando(1, 10) * 10) / 2; // take a rand between 1 and 10, multiply by ten to make it 10 - 100, then divide in half to get radius
     const coordinates = {
       x: this.rando(radius + 2, this.canvas.width - radius - 2),
       y: 0 - radius
     };
     const next = this.colorIndex + 1;
     this.colorIndex = next < this.colorArr.length ? next : 0;
-    const dot = new Dot(this.ctx, coordinates, radius, this.colorArr[this.colorIndex]);
+    // const dot = new Dot(this.ctx, coordinates, radius, this.colorArr[this.colorIndex]);
+    const dot = new Dot(this.ctx, coordinates, radius, this.dotColor(radius));
     this.dots.push(dot);
   }
 }

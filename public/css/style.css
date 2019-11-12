@@ -51,6 +51,7 @@ body {
         color: #eac67a;
         font-family: "VT323", monospace;
         font-size: 3rem;
+        outline: none;
         padding: 0.5rem 1rem;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
         @media only screen and (max-width: 550px) {

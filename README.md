@@ -27,3 +27,5 @@ I didn't spend much time on the dev process as it was somewhat pointless. I just
 ```
 npm start
 ```
+
+I have this set up where the faster the speed the greater the point value AND the smaller the the dot the greater the point value. In other words, small dots on fast speeds are worth quite a bit!

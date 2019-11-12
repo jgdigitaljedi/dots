@@ -56,6 +56,7 @@ body {
         color: $accent2;
         font-family: $secondary-font;
         font-size: 3rem;
+        outline: none;
         padding: 0.5rem 1rem;
         @include box-shadow(2);
         @media only screen and (max-width: 550px) {
