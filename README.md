@@ -39,3 +39,5 @@ npm start
 While far from perfection, I tried to rpesent something that is responsive, has a decent theme/color palette, and meets the requirements and I wanted it to be done as quickly as possible because Ive got a busy week ahead of me!
 
 I thought about adding another slider to change the delay between dot creation. The idea was to allow the player to make them not only drop more quickly but in fast succession and I would have made that increased the score even more. The logic would have been quite simple. The html and styling would have been a slight pain wwith the responsiveness.
+
+If I were to go hog wild, I'd make the dots more interesting and maybe have them rotate while they fell. I'd also make a build process to minify the code and spit out the fastest and smallest version possible. If I were getting really fancy, I'd build it in Ionic and compile to mobile as well!

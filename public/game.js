@@ -17,7 +17,6 @@ class GameControl {
     this.pauseTime = null; // used when pausing to keep track of time between pause and timestamp
     this.rate = 10; // drop speed
     this.delta = null; // manipulation of time variables to advance the animations
-    this.colorIndex = 0; // current index to be used in color array for dots
 
     /** constants */
     this.colorArr = ['#984b43', '#eac67a', '#50555c', '#233237']; // colors for dots
@@ -107,9 +106,10 @@ class GameControl {
     } else {
       return this.colorArr[3];
     }
+    // I was gonna get fancy with some math here, but this is still simple and quick so...
   }
 
-  /****** state management */
+  /****** state management ******/
 
   // start game logic
   startGame() {
@@ -118,7 +118,7 @@ class GameControl {
         this.makeDot();
       }, 1000);
       // @TODO: if future me does enhancements, add an input to adjust dot generation delay too? The variable would be used here.
-      window.requestAnimationFrame(this.tick.bind(this));
+      window.requestAnimationFrame(this.tick.bind(this)); // window so needs scope bound
     }
   }
 
@@ -129,7 +129,7 @@ class GameControl {
     this.frameTime = ts;
     this.drawCanvas();
     if (!this.paused) {
-      window.requestAnimationFrame(this.tick.bind(this));
+      window.requestAnimationFrame(this.tick.bind(this)); // window so needs scope bound
     }
   }
 
@@ -139,11 +139,10 @@ class GameControl {
     this.dots.forEach((dot, i) => {
       // this helped with the formula: https://stackoverflow.com/questions/10957689/collision-detection-between-a-line-and-a-circle-in-javascript
       const collision =
-        Math.sqrt(Math.pow(event.clientX - dot.x, 2) + Math.pow(adjustedY - dot.y, 2)) <
-        dot.radius + 10;
+        Math.sqrt(Math.pow(event.clientX - dot.x, 2) + Math.pow(adjustedY - dot.y, 2)) < dot.radius;
       if (collision) {
         this.scoreControl.update(dot.value, this.rate);
-        this.dots.splice(i, 1);
+        this.dots.splice(i, 1); // mutative; could have also done a filter and reassignment but that seemed silly
       }
     });
   }
@@ -164,9 +163,10 @@ class GameControl {
       const distance = this.rate * this.delta;
       dot.render(distance);
 
-      // remove from bottom; I want to check for height + radius at some point
-      if (dot.y > this.ctxHeight * 10) {
-        this.dots.splice(i, 1);
+      // remove from bottom; basically check if y - radius is offscreen to make sure whole dot is off screen
+      // multiplying by 2 to give padding for possible VERTICAL resizing to work as expected; make the game take slightly more memory but worth it
+      if (dot.y - dot.radius > this.canvas.height * 2) {
+        this.dots.splice(i, 1); // again with the mutative approach
       }
     });
   }
@@ -178,8 +178,6 @@ class GameControl {
       x: this.rando(radius + 2, this.canvas.width - radius - 2), // this is a bit dodgy; The idea is to generate min x 2 larger than radius and max x 2 less that radius for padding
       y: 0 - radius
     };
-    const next = this.colorIndex + 1;
-    this.colorIndex = next < this.colorArr.length ? next : 0;
     const dot = new Dot(this.ctx, coordinates, radius, this.dotColor(radius));
     this.dots.push(dot);
   }
