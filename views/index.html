@@ -11,7 +11,7 @@
 
   <body>
     <div class="game-controls">
-      <div class="game-controls__speed">
+      <div class="game-controls__speed one-third">
         <div class="game-controls__speed--label-and-value">
           <label for="speedSlider">Speed:</label>
           <div id="slider-value">1</div>
@@ -25,8 +25,12 @@
           class="game-controls__speed--input"
         />
       </div>
-      <button class="game-controls__power-button pause-game">Start</button>
-      <p class="game-controls__score">0</p>
+      <div class="game-controls__power-button one-third">
+        <button class="game-controls__power-button--button pause-game">Start</button>
+      </div>
+      <div class="game-controls__score one-third">
+        <p class="game-controls__score--display">000000</p>
+      </div>
     </div>
     <div class="game-area">
       <canvas id="game-area__canvas"></canvas>

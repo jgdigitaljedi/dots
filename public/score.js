@@ -7,6 +7,7 @@ class ScoreControl {
   // logic for updating the score
   update(value, rate) {
     this.score += Math.round(value + rate / 10);
-    this.scoreboard.innerText = this.score;
+    const scoreDisplay = this.score.toString().padStart(6, '0');
+    this.scoreboard.innerText = scoreDisplay;
   }
 }

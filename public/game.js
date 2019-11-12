@@ -1,39 +1,41 @@
 class GameControl {
   constructor(canvas, ctx, toggle, speedSlider, scoreboard, sliderValue) {
-    // canvas related
-    this.canvas = canvas;
-    this.ctx = ctx;
+    /** canvas related */
+    this.canvas = canvas; // canvas
+    this.ctx = ctx; // canvas context
 
-    // control elements
-    this.toggle = toggle;
-    this.slider = speedSlider;
-    this.sliderValue = sliderValue;
+    /** control elements */
+    this.toggle = toggle; // start/pause button
+    this.slider = speedSlider; // speed slider
+    this.sliderValue = sliderValue; // element containing slider value on DOM
 
-    // state
-    this.paused = true;
-    this.dots = [];
-    this.dropInterval = null;
-    this.frameTime = new Date();
-    this.pauseTime = null;
-    this.rate = 30;
-    this.delta = null;
-    this.colorIndex = 0;
+    /** state */
+    this.paused = true; // paused state
+    this.dots = []; // array of dots being displayed
+    this.dropInterval = null; // interval for game assigned to variable so it can be cancelled as well
+    this.frameTime = new Date(); // last time stamp for a frame
+    this.pauseTime = null; // used when pausing to keep track of time between pause and timestamp
+    this.rate = 30; // drop speed
+    this.delta = null; // manipulation of time variables to advance the animations
+    this.colorIndex = 0; // current index to be used in color array for dots
 
-    // constants
-    this.colorArr = ['#984b43', '#233237', '#eac67a', '#50555c'];
-    this.scoreControl = new ScoreControl(scoreboard);
-    this.controls = new StartButton(toggle, speedSlider);
+    /** constants */
+    this.colorArr = ['#984b43', '#233237', '#eac67a', '#50555c']; // colors for dots
+    this.scoreControl = new ScoreControl(scoreboard); // instance of score class
+    this.controls = new StartButton(toggle, speedSlider); // instance of controls class
 
-    // methods that need bind because called by window function
+    /** methods that need bind because called by window outside of closure */
     this.drawCanvas = this.drawCanvas.bind(this);
     this.makeDot = this.makeDot.bind(this);
     this.collisionTest = this.collisionTest.bind(this);
 
-    // start listeners to start game
+    /** start listeners to start game */
     this.handleClick();
     this.handleSlider();
     this.init();
   }
+
+  /******* Handlers / events *******/
 
   // logic to start "start"/"pause" button logic
   init() {
@@ -79,6 +81,13 @@ class GameControl {
     this.removeDotsOutside();
   }
 
+  /******* helpers ******/
+
+  // generate random number in range
+  rando(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
+
   // when window is resized, remove dots outside of new canvas width
   removeDotsOutside() {
     this.dots.forEach((dot, i) => {
@@ -86,6 +95,19 @@ class GameControl {
         this.dots.splice(i, 1);
       }
     });
+  }
+
+  /****** state management */
+
+  // start game logic
+  startGame() {
+    if (!this.paused) {
+      this.dropInterval = window.setInterval(() => {
+        this.makeDot();
+      }, 1000);
+      // @TODO: if future me does enhancements, add an input to adjust dot generation delay too? The variable would be used here.
+      window.requestAnimationFrame(this.tick.bind(this));
+    }
   }
 
   // advance animation frame
@@ -113,6 +135,8 @@ class GameControl {
       }
     });
   }
+
+  /******** canvas logic ******/
 
   // standard canvas animation "draw" functionality; clear the canvas, fill, and call moveDots to draw in new positions
   drawCanvas() {
@@ -146,21 +170,5 @@ class GameControl {
     this.colorIndex = next < this.colorArr.length ? next : 0;
     const dot = new Dot(this.ctx, coordinates, radius, this.colorArr[this.colorIndex]);
     this.dots.push(dot);
-  }
-
-  // start game logic
-  startGame() {
-    if (!this.paused) {
-      this.dropInterval = window.setInterval(() => {
-        this.makeDot();
-      }, 1000);
-      // @TODO: if future me does enhancements, add an input to adjust dot generation delay too? The variable would be used here.
-      window.requestAnimationFrame(this.tick.bind(this));
-    }
-  }
-
-  // generate random number in range
-  rando(min, max) {
-    return Math.floor(Math.random() * max) + min;
   }
 }

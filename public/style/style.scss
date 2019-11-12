@@ -4,12 +4,19 @@ html,
 body {
   background-color: $primary;
   height: 100%;
+  width: 100%;
 }
 body {
   font-family: $primary-font;
   margin: 0;
   padding: 0;
   width: 100%;
+  @media only screen and (max-width: 550px) {
+    // quick and dirty hack to "solve" the weird scrollbar behavior I was getting on a time crunch
+    // production code gets better treatment than this!
+    overflow: hidden;
+    width: 100%;
+  }
   .game-controls {
     align-items: center;
     background-color: $secondary;
@@ -20,28 +27,73 @@ body {
     min-height: 3rem;
     width: 100%;
     @include box_shadow(2);
+    @media only screen and (max-width: 550px) {
+      flex-direction: column;
+      height: 12rem;
+      justify-content: flex-start;
+      max-width: 100%;
+      width: 100%;
+    }
+    .one-third {
+      display: flex;
+      padding: 0 1rem;
+      width: 33%;
+      @media only screen and (max-width: 550px) {
+        margin: 0;
+        padding: 0 0.5rem;
+        width: 100%;
+      }
+    }
     .game-controls__score {
-      color: $flat-white;
-      font-family: $secondary-font;
-      font-size: 3rem;
+      display: flex;
+      justify-content: flex-end;
+      @media only screen and (max-width: 550px) {
+        justify-content: center;
+      }
+      .game-controls__score--display {
+        background-color: $primary;
+        border: 2px solid $flat-white;
+        color: $accent2;
+        font-family: $secondary-font;
+        font-size: 3rem;
+        padding: 0.5rem 1rem;
+        @include box-shadow(2);
+        @media only screen and (max-width: 550px) {
+          font-size: 2rem;
+          margin: 0.5rem;
+        }
+      }
     }
     .game-controls__power-button {
-      background-color: $accent2;
-      border: 4px solid $accent;
-      color: $primary;
-      font-size: 3rem;
-      height: 4rem;
-      width: 12rem;
-      &.pause-game {
-        background-color: $accent;
-        border: 4px solid $accent2;
-        color: $flat-white;
+      display: flex;
+      justify-content: center;
+      .game-controls__power-button--button {
+        background-color: $accent2;
+        border: 4px solid $accent;
+        color: $primary;
+        font-size: 3rem;
+        height: 4rem;
+        width: 12rem;
+        @include box-shadow(2);
+        @media only screen and (max-width: 550px) {
+          font-size: 2rem;
+          height: 3rem;
+        }
+        &.pause-game {
+          background-color: $accent;
+          border: 4px solid $accent2;
+          color: $flat-white;
+        }
       }
     }
     .game-controls__speed {
       display: flex;
       flex-direction: column;
-      width: 20%;
+      @media only screen and (max-width: 550px) {
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
       .game-controls__speed--label-and-value {
         display: flex;
         label {
@@ -51,65 +103,70 @@ body {
       }
       .game-controls__speed--input {
         // I won't pretend like I'm a css wizard. I used this: https://www.cssportal.com/style-input-range/
+        -webkit-appearance: none;
         background-color: $secondary;
         height: 26px;
-        -webkit-appearance: none;
         margin: 10px 0;
-        width: 100%;
+        width: 90%;
         &:focus {
           outline: none;
         }
         &::-webkit-slider-runnable-track {
-          width: 100%;
-          height: 14px;
-          cursor: pointer;
           // animate: 0.2s;
-          box-shadow: 1px 1px 1px #50555c;
           background: $accent;
-          border-radius: 14px;
           border: 0px solid #000000;
+          border-radius: 14px;
+          box-shadow: 1px 1px 1px #50555c;
+          cursor: pointer;
+          height: 14px;
+          width: 100%;
+          @include box-shadow(2);
         }
         &::-webkit-slider-thumb {
-          box-shadow: 0px 0px 0px #000000;
-          border: 0px solid #000000;
-          height: 20px;
-          width: 40px;
-          border-radius: 12px;
-          background: $accent2;
-          cursor: pointer;
           -webkit-appearance: none;
+          background: $accent2;
+          border: 0px solid #000000;
+          border-radius: 12px;
+          box-shadow: 0px 0px 0px #000000;
+          height: 20px;
+          cursor: pointer;
           margin-top: -3px;
+          width: 40px;
+          @include box-shadow(2);
         }
         &:focus::-webkit-slider-runnable-track {
           background: $accent;
         }
         &::-moz-range-track {
-          width: 100%;
-          height: 14px;
-          cursor: pointer;
           // animate: 0.2s;
-          box-shadow: 1px 1px 1px #50555c;
           background: $accent;
           border-radius: 14px;
           border: 0px solid #000000;
+          box-shadow: 1px 1px 1px #50555c;
+          cursor: pointer;
+          height: 14px;
+          width: 100%;
+          @include box-shadow(2);
         }
         &::-moz-range-thumb {
-          box-shadow: 0px 0px 0px #000000;
+          background: $accent2;
           border: 0px solid #000000;
+          border-radius: 12px;
+          box-shadow: 0px 0px 0px #000000;
+          cursor: pointer;
           height: 20px;
           width: 40px;
-          border-radius: 12px;
-          background: $accent2;
-          cursor: pointer;
+          @include box-shadow(2);
         }
         &::-ms-track {
-          width: 100%;
-          height: 14px;
-          cursor: pointer;
           // animate: 0.2s;
           background: transparent;
           border-color: transparent;
           color: transparent;
+          cursor: pointer;
+          height: 14px;
+          width: 100%;
+          @include box-shadow(2);
         }
         &::-ms-fill-lower {
           background: $accent;
@@ -124,14 +181,15 @@ body {
           box-shadow: 1px 1px 1px #50555c;
         }
         &::-ms-thumb {
-          margin-top: 1px;
-          box-shadow: 0px 0px 0px #000000;
-          border: 0px solid #000000;
-          height: 20px;
-          width: 40px;
-          border-radius: 12px;
           background: $accent2;
+          border: 0px solid #000000;
+          border-radius: 12px;
+          box-shadow: 0px 0px 0px #000000;
           cursor: pointer;
+          height: 20px;
+          margin-top: 1px;
+          width: 40px;
+          @include box-shadow(2);
         }
         &:focus::-ms-fill-lower {
           background: $accent;
@@ -144,5 +202,8 @@ body {
   }
   .game-area {
     height: 90%;
+    @media only screen and (max-width: 550px) {
+      height: calc(100vh - 12rem);
+    }
   }
 }
