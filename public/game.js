@@ -1,14 +1,13 @@
 class GameControl {
-  constructor(canvas, ctx, toggle, speedSlider, scoreboard) {
+  constructor(canvas, ctx, toggle, speedSlider, scoreboard, sliderValue) {
     // canvas related
     this.canvas = canvas;
     this.ctx = ctx;
-    this.ctxWidth = canvas.width || 0;
-    this.ctxHeight = canvas.height || 0;
 
     // control elements
     this.toggle = toggle;
     this.slider = speedSlider;
+    this.sliderValue = sliderValue;
 
     // state
     this.paused = true;
@@ -23,6 +22,7 @@ class GameControl {
     // constants
     this.colorArr = ['#984b43', '#233237', '#eac67a', '#50555c'];
     this.scoreControl = new ScoreControl(scoreboard);
+    this.controls = new StartButton(toggle, speedSlider);
 
     // methods that need bind because called by window function
     this.drawCanvas = this.drawCanvas.bind(this);
@@ -43,15 +43,13 @@ class GameControl {
         if (this.pauseTime) {
           this.frameTime = new Date() - this.pauseTime;
         }
-        this.toggle.classList.toggle('pause-game');
-        this.toggle.innerText = 'Pause';
+        this.controls.playPause(true);
         this.startGame();
       } else {
         window.clearInterval(this.dropInterval);
         this.paused = true;
         this.pauseTime = new Date() - this.frameTime;
-        this.toggle.innerText = 'Start';
-        this.toggle.classList.toggle('pause-game');
+        this.controls.playPause();
       }
     });
   }
@@ -59,7 +57,7 @@ class GameControl {
   // if user changes speed slider then speed up drop rate
   handleSlider() {
     this.slider.addEventListener('change', event => {
-      console.log('val', event.target.value);
+      this.sliderValue.innerText = event.target.value;
       this.rate = event.target.value * 50;
     });
   }
@@ -76,8 +74,8 @@ class GameControl {
 
   // if window is resized, resize the canvas
   windowResized(width, height) {
-    this.ctxWidth = width;
-    this.ctxHeight = height;
+    this.canvas.width = width;
+    this.canvas.height = height;
     this.removeDotsOutside();
   }
 
@@ -118,9 +116,9 @@ class GameControl {
 
   // standard canvas animation "draw" functionality; clear the canvas, fill, and call moveDots to draw in new positions
   drawCanvas() {
-    this.ctx.clearRect(0, 0, this.ctxWidth, this.ctxHeight);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = '#18121e';
-    this.ctx.fillRect(0, 0, this.ctxWidth, this.ctxHeight);
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.moveDots();
   }
 
@@ -140,7 +138,10 @@ class GameControl {
   // instantiate new dot and add to array
   makeDot() {
     const radius = (this.rando(1, 10) * 10) / 2;
-    const coordinates = { x: this.rando(radius + 2, this.ctxWidth - radius - 2), y: 0 - radius };
+    const coordinates = {
+      x: this.rando(radius + 2, this.canvas.width - radius - 2),
+      y: 0 - radius
+    };
     const next = this.colorIndex + 1;
     this.colorIndex = next < this.colorArr.length ? next : 0;
     const dot = new Dot(this.ctx, coordinates, radius, this.colorArr[this.colorIndex]);

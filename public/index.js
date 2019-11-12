@@ -6,6 +6,7 @@
   const toggleButton = document.querySelector('.game-controls__power-button');
   const speedSlider = document.querySelector('.game-controls__speed');
   const scoreboard = document.querySelector('.game-controls__score');
+  const sliderValue = document.querySelector('#slider-value');
 
   // set canvas width to max available width
   gameCanvas.width = gameArea.offsetWidth;
@@ -19,5 +20,12 @@
     gameInstance.windowResized(gameCanvas.width, gameCanvas.height);
   });
 
-  const gameInstance = new GameControl(gameCanvas, gameCtx, toggleButton, speedSlider, scoreboard);
+  const gameInstance = new GameControl(
+    gameCanvas,
+    gameCtx,
+    toggleButton,
+    speedSlider,
+    scoreboard,
+    sliderValue
+  );
 })();
