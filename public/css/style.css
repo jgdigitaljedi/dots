@@ -18,9 +18,8 @@ body {
     background-color: #233237;
     color: #fafafa;
     display: flex;
-    height: 10%;
+    height: 6rem;
     justify-content: space-around;
-    min-height: 3rem;
     width: 100%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
     @media only screen and (max-width: 550px) {
@@ -174,7 +173,7 @@ body {
         body .game-controls .game-controls__speed .game-controls__speed--input:focus::-ms-fill-upper {
           background: #984b43; }
   body .game-area {
-    height: 90%; }
+    height: calc(100vh - 6rem); }
     @media only screen and (max-width: 550px) {
       body .game-area {
         height: calc(100vh - 12rem); } }
